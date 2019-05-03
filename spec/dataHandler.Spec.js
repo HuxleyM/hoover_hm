@@ -1,55 +1,46 @@
 const rewire = require('rewire')
-const DataHandler = rewire('../src/dataHandler')
+const dataHandlerFunctions = rewire('../src/dataHandler')
 
-const {sortData, readData, cleanData, turnToNumbersArray} = require('../src/dataHandler')
 
-var dummyData = [ '5 5', '1 2', '1 0', '2 2', '2 3', 'NNESEESWNWW' ]
+const fileDataDummy = '5 5\n1 2\n1 0\n2 2\n2 3\nNNESEESWNWW'
+const retrivedFileData = ['5 5','1 2','1 0','2 2','2 3','NNESEESWNWW']
+
 
 var fsMock = {
-    readFileSync: function (path, encoding) {
-      return dummyData
+    readFileSync: function (path, encoding, cb) {
+       return fileDataDummy
     }
- };
+};
+dataHandlerFunctions.__set__("fs", fsMock);
 
- DataHandler.__set__("fs", fsMock);
+const {sortDataTest, readDataTest, turnToNumbersArrayTest, textFileHandler} = dataHandlerFunctions
 
 describe('DataHandler module', ()=>{
 
-    xit('#readData returns data from a file', ()=> {
-        let result = DataHandler.readData();
-        expect(result).toEqual(dummyData)
+    it('#readData returns data from a file', ()=> {
+        let result = readDataTest();
+        expect(result).toEqual(retrivedFileData)
     })
 
-    xit('#sortData will split up an array into relavant sections', ()=>{
-       expect(typeof sortData(result)).toEqual('array')
-    })
-    
-    var data;
-    beforeEach(()=>{
-       data = readData()
-    })
-    it('#readData returns a list of data',()=>{
-        expect(data).toEqual(dummyData)
+    it('#turnTonumbers returns data as parsed integer array', ()=>{
+        let unCleaned = ['5 5']
+        let cleaned = [5,5]
+        expect(turnToNumbersArrayTest(unCleaned)).toEqual(cleaned)
     })
 
-
-    it('#sortData returns the data into a sorted result object', ()=>{
-        let result = sortData(data)
-        console.log(result)
+    xit('#sortData returns the data into a sorted result object', ()=>{
+        let result = sortDataTest(retrivedFileData)
         expect(result.grid).toEqual([5, 5])
         expect(result.location).toEqual([1, 2])
         expect(result.directions).toEqual('NNESEESWNWW')
         expect(result.dirtPatches).toEqual([ [1, 0], [2, 2], [2, 3] ])
     })
 
-    it('#turnTonumbers returns data as parsed integer array', ()=>{
-        let unCleaned = ['5 5']
-        let cleaned = [5,5]
-        console.log(turnToNumbersArray(unCleaned))
-        expect(turnToNumbersArray(unCleaned)).toEqual(cleaned)
-
+    it('#DataHandler will use all of the methods to get to the answer', ()=>{
+        let result = textFileHandler.getData()
+        expect(result.grid).toEqual([5, 5])
+        expect(result.location).toEqual([1, 2])
+        expect(result.directions).toEqual('NNESEESWNWW')
+        expect(result.dirtPatches).toEqual([ [1, 0], [2, 2], [2, 3] ])
     })
-
-
 })
-
