@@ -16,25 +16,36 @@ describe('hoover class', ()=>{
        expect(Henry.location).toEqual({x:5, y:5})
        expect(Henry.floor).toEqual(dummyFloorObj)
     })
-
-    it('#moveme should take an argument, and should return a different result dependent on letter',()=>{
-        expect(Henry.moveMe('N')).toEqual('N')
-        expect(Henry.moveMe('E')).toEqual('E')
-        expect(Henry.moveMe('S')).toEqual('S')
-        expect(Henry.moveMe('W')).toEqual('W')
+    
+    xit('#moveme should take an argument, and should return a integer result dependent on letter',()=>{
+        expect(Henry.moveMe('N')).toEqual(1)
+        expect(Henry.moveMe('E')).toEqual(1)
+        expect(Henry.moveMe('S')).toEqual(-1)
+        expect(Henry.moveMe('W')).toEqual(-1)
      })
 
+ 
      it('#validDirections should check that directions only contain valid Directions', ()=> {
-         expect(()=>Henry.moveMe('1')).toThrow(new TypeError('invalid directions'))
+         expect(()=>Henry.validDirections('1')).toThrow(new TypeError('invalid directions'))
+     })
+     
+     it('#validDirections should be able to regonise lower case letters',()=>{
+        let directions = Henry.validDirections('n')
+        expect(directions).toEqual(['N'])  
      })
 
-    it('#moveme should take an argument, and should return a different result dependent on letter',()=>{
-        expect(Henry.moveMe('N')).toEqual('N')
-        expect(Henry.moveMe('E')).toEqual('E')
-        expect(Henry.moveMe('S')).toEqual('S')
-        expect(Henry.moveMe('W')).toEqual('W')
+     xit('#moveme should be able to take a string of directions', ()=>{
+         expect(Henry.moveMe('NESW')).toEqual(-1)
      })
 
+    it('#moveme should be able to take a string of directions', ()=>{
+        expect(Henry.moveMe('N')).toEqual(1)
+        expect(Henry.moveMe('E')).toEqual(1)
+        expect(Henry.moveMe('S')).toEqual(-1)
+        expect(Henry.moveMe('W')).toEqual(-1)
+    })
+
+ 
 
 
 })
