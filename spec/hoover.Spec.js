@@ -7,11 +7,10 @@ describe('hoover class', ()=>{
         dirtPatches: [ [ 1, 0 ], [ 2, 2 ], [ 2, 3 ] ] 
     }
 
-
     const dummyLocation = [ 5, 5 ]
     const dummyDirections = 'NNESEESWNWW'
     var henry;
-    
+
     beforeEach(()=>{
      henry = new Hoover(dummyLocation, dummyFloorObj)
     })
@@ -67,8 +66,22 @@ describe('hoover class', ()=>{
         expect(henry.givesLocation).toEqual('5 5')
     })
 
-    it('#hooversUp will check if a patch of dirt has been hoovered up', ()=>{
+    xit('#hooversUp will check if a patch of dirt has been hoovered up', ()=>{
         henry.location = {x:2, y:2}
         expect(henry.hooversUp()).toBe(true)
+    })
+
+
+    it('#hooversUp if a patch has been found it should add it to the number hoovered ', ()=>{
+        henry.location = {x:2, y:2}
+        henry.hooversUp()
+        expect(henry.dirtPatchesHoovered).toBe(1)
+    })
+
+    it('#hooversUp itShould remove the dirt patch from the array', ()=>{
+        expect(henry.floor.dirtPatches.length).toBe(3)
+        henry.location = {x:2, y:2}
+        henry.hooversUp()
+        expect(henry.floor.dirtPatches.length).toBe(2)
     })
 })

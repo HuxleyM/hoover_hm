@@ -3,6 +3,7 @@ module.exports = class Hoover {
     constructor(location_array, floor_obj){
         this.floor = floor_obj;
         this.location = {x:location_array[0], y:location_array[1]}
+        this.dirtPatchesHoovered = 0
     }
 
     get givesLocation(){
@@ -20,13 +21,12 @@ module.exports = class Hoover {
     }
 
     hooversUp(){
-        let outcome;
         this.floor.dirtPatches.map((x, index) => {
           if(x[0] === this.location.x && x[1] === this.location.y){
-              outcome =  true
+            this.floor.dirtPatches.splice(index, 1)
+            this.dirtPatchesHoovered += 1
           }
         })
-        return outcome
     }
 
     inbounds(axis, move){
@@ -42,16 +42,16 @@ module.exports = class Hoover {
         finalDirections.map(x => {  
             switch(x){
             case 'N':
-                 if(this.inbounds('x',1)) this.location.y += 1;
+                 if(this.inbounds('y',1)) this.location.y += 1;
                 break;
             case 'E':
-                if(this.inbounds('y',1)) this.location.x += 1;
+                if(this.inbounds('x',1)) this.location.x += 1;
                 break;
             case 'S':
-                if(this.inbounds('x',-1)) this.location.y -= 1;
+                if(this.inbounds('y',-1)) this.location.y -= 1;
                 break;
             case 'W':
-                if(this.inbounds('y',-1)) this.location.x -= 1;
+                if(this.inbounds('x',-1)) this.location.x -= 1;
                 break;
             default:
                 break
