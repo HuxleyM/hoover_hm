@@ -62,26 +62,40 @@ describe('hoover class', ()=>{
        expect(henry.inbounds).toHaveBeenCalled();
     })
 
+    it('#moveMe should call the hovversUp method', ()=>{
+        spyOn(henry, 'hooversUp')
+        henry.moveMe('SWS')
+        expect(henry.hooversUp).toHaveBeenCalled();
+     })
+ 
+
     it('#givesLocation should return the current x an y coordinate of the hoover and dirtPatches cleaned', ()=>{
         expect(henry.givesLocation).toEqual('5 5\n0')
     })
+    
 
-    xit('#hooversUp will check if a patch of dirt has been hoovered up', ()=>{
-        henry.location = {x:2, y:2}
-        expect(henry.hooversUp()).toBe(true)
+    describe('#hoovers up', ()=>{
+
+        beforeEach(()=>{
+            henry.floor.dirtPatches.push([3,4])
+            henry.location = {x:3, y:4}
+        })
+
+        xit('#hooversUp will check if a patch of dirt has been hoovered up', ()=>{
+            expect(henry.hooversUp()).toBe(true)
+        })
+    
+        
+        it('#hooversUp if a patch has been found it should add it to the number hoovered ', ()=>{
+            henry.hooversUp()
+            expect(henry.dirtPatchesHoovered).toBe(1)
+        })
+    
+        it('#hooversUp itShould remove the dirt patch from the array', ()=>{
+            expect(henry.floor.dirtPatches.length).toBe(4)
+            henry.hooversUp()
+            expect(henry.floor.dirtPatches.length).toBe(3)
+        })
     })
-
-
-    it('#hooversUp if a patch has been found it should add it to the number hoovered ', ()=>{
-        henry.location = {x:2, y:2}
-        henry.hooversUp()
-        expect(henry.dirtPatchesHoovered).toBe(1)
-    })
-
-    it('#hooversUp itShould remove the dirt patch from the array', ()=>{
-        expect(henry.floor.dirtPatches.length).toBe(3)
-        henry.location = {x:2, y:2}
-        henry.hooversUp()
-        expect(henry.floor.dirtPatches.length).toBe(2)
-    })
+ 
 })

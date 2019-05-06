@@ -57,5 +57,6 @@ module.exports = class Hoover {
                 break
             }
         })
+        this.hooversUp()
     }  
 }
