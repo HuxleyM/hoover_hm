@@ -47,9 +47,11 @@ describe('hoover class', ()=>{
 
     it('#inbounds should check wether a suggested move is within a grids bounds returning true or false',()=>{
         expect(()=>henry.inbounds('x',1)).toThrow(new Error('out of bounds'))
+        let truthfulCase = henry.inbounds('x',-2)
+        expect(truthfulCase).toBe(true)
     })
 
-    it('#moveMe should only move if the move is within bounds of the grid', ()=>{
+    it('#moveMe should call the inbounds method', ()=>{
     
     })
 
