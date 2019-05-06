@@ -7,7 +7,7 @@ module.exports = class Hoover {
     }
 
     get givesLocation(){
-        return `${this.location.x.toString()} ${this.location.y.toString()}`
+        return `${this.location.x.toString()} ${this.location.y.toString()}\n${this.dirtPatchesHoovered.toString()}`
     }
     
     validDirections(directions){
