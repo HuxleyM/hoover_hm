@@ -95,7 +95,7 @@ describe('hoover class', ()=>{
             expect(henry.floor.dirtPatches.length).toBe(4)
             henry.hooversUp()
             expect(henry.floor.dirtPatches.length).toBe(3)
+            console.log(henry)
         })
     })
- 
 })

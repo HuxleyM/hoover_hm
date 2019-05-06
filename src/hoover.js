@@ -56,7 +56,7 @@ module.exports = class Hoover {
             default:
                 break
             }
+            this.hooversUp()
         })
-        this.hooversUp()
     }  
 }
