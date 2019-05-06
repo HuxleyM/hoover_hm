@@ -21,6 +21,7 @@ describe('hoover class', ()=>{
        expect(henry.floor).toEqual(dummyFloorObj)
     })
     
+    
     xit('#moveme should take an argument, and should return a integer result dependent on letter',()=>{
         expect(henry.moveMe('N')).toEqual(1)
         expect(henry.moveMe('E')).toEqual(1)
@@ -45,18 +46,24 @@ describe('hoover class', ()=>{
    
     })
 
-    it('#inbounds should check wether a suggested move is within a grids bounds returning true or false',()=>{
-        expect(()=>henry.inbounds('x',1)).toThrow(new Error('out of bounds'))
+    it('#inbounds should return true if a suggested move is within bounds ',()=>{
         let truthfulCase = henry.inbounds('x',-2)
         expect(truthfulCase).toBe(true)
     })
 
-    it('#moveMe should call the inbounds method', ()=>{
-    
+
+    it('#inbounds should return an error if a move is out of bounds' ,()=>{
+        expect(()=>henry.inbounds('x',1)).toThrow(new Error('out of bounds'))
     })
 
- 
 
+    it('#moveMe should call the inbounds method', ()=>{
+       spyOn(henry, 'inbounds')
+       henry.moveMe('NES')
+       expect(henry.inbounds).toHaveBeenCalled();
+    })
 
+    it('#givesLocation should return the current x an y coordinate of the hoover', ()=>{
+        expect(henry.givesLocation).toEqual('5 5')
+    })
 })
-

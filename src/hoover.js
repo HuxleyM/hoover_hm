@@ -4,12 +4,14 @@ module.exports = class Hoover {
         this.floor = floor_obj;
         this.location = {x:location_array[0], y:location_array[1]}
     }
+
+    get givesLocation(){
+        return `${this.location.x.toString()} ${this.location.y.toString()}`
+    }
     
     validDirections(directions){
         return directions.split('').map(x => {
-            if(['n','e','s','w'.includes(x)]){
-                x = x.toUpperCase();
-            }
+            x = x.toUpperCase();
             if(!['N','E','S','W'].includes(x)){
                throw new Error('invalid directions')
             }
@@ -19,7 +21,7 @@ module.exports = class Hoover {
 
     inbounds(axis, move){
         let onAxis = (axis === 'x') ? this.floor.dimensions.x : this.floor.dimensions.y;
-        let futureMove = this.location[axis] += move;
+        let futureMove = this.location[axis] + move;
         if (futureMove > onAxis || futureMove < 0){
             throw new Error('out of bounds')
          } 
@@ -33,16 +35,16 @@ module.exports = class Hoover {
         finalDirections.map(x => {  
             switch(x){
             case 'N':
-                 this.location.y += 1;
+                 if(this.inbounds('x',1)) this.location.y += 1;
                 break;
             case 'E':
-                this.location.x += 1;
+                if(this.inbounds('y',1)) this.location.x += 1;
                 break;
             case 'S':
-                this.location.y -= 1;
+                if(this.inbounds('x',-1)) this.location.y -= 1;
                 break;
             case 'W':
-                this.location.x -= 1;
+                if(this.inbounds('y',-1)) this.location.x -= 1;
                 break;
             default:
                 break
