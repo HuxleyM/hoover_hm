@@ -10,7 +10,6 @@ module.exports = class Hoover {
             if(['n','e','s','w'.includes(x)]){
                 x = x.toUpperCase();
             }
-            
             if(!['N','E','S','W'].includes(x)){
                throw new Error('invalid directions')
             }
