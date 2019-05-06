@@ -19,15 +19,22 @@ module.exports = class Hoover {
         })
     }
 
+    hooversUp(){
+        let outcome;
+        this.floor.dirtPatches.map((x, index) => {
+          if(x[0] === this.location.x && x[1] === this.location.y){
+              outcome =  true
+          }
+        })
+        return outcome
+    }
+
     inbounds(axis, move){
         let onAxis = (axis === 'x') ? this.floor.dimensions.x : this.floor.dimensions.y;
-        let futureMove = this.location[axis] + move;
-        if (futureMove > onAxis || futureMove < 0){
+        if (this.location[axis] + move > onAxis || this.location[axis] + move < 0){
             throw new Error('out of bounds')
-         } 
-         else { 
-             return true;
-         }
+        }
+        return true;
      }
 
     moveMe(directions){

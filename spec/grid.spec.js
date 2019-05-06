@@ -10,6 +10,4 @@ describe('grid',()=>{
         expect(floor.dimensions).toEqual({ x : dummyDimensions[0], y : dummyDimensions[1]})
         expect(floor.dirtPatches).toEqual(dummmyDirtPatches)
     })
-    
-    
 })

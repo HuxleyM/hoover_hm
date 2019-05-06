@@ -66,4 +66,9 @@ describe('hoover class', ()=>{
     it('#givesLocation should return the current x an y coordinate of the hoover', ()=>{
         expect(henry.givesLocation).toEqual('5 5')
     })
+
+    it('#hooversUp will check if a patch of dirt has been hoovered up', ()=>{
+        henry.location = {x:2, y:2}
+        expect(henry.hooversUp()).toBe(true)
+    })
 })
