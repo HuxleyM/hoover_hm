@@ -16,10 +16,21 @@ module.exports = class Hoover {
             return x;
         })
     }
+
+    inbounds(axis, move){
+        let onAxis = (axis === 'x') ? this.floor.dimensions.x : this.floor.dimensions.y;
+        let futureMove = this.location[axis] += move;
+        if (futureMove > onAxis || futureMove < 0){
+            throw new Error('out of bounds')
+         } 
+         else { 
+             return true;
+         }
+     }
+
     moveMe(directions){
         let finalDirections = this.validDirections(directions)
-        finalDirections.map(x => {
-           
+        finalDirections.map(x => {  
             switch(x){
             case 'N':
                  this.location.y += 1;

@@ -38,14 +38,19 @@ describe('hoover class', ()=>{
         expect(directions).toEqual(['N'])  
      })
 
-     xit('#moveme should be able to take a string of directions', ()=>{
-         expect(henry.moveMe('NESW')).toEqual(-1)
-     })
 
     it('#moveme should be able to take a string of directions that change its x and y location', ()=>{
         henry.moveMe('SW')
         expect(henry.location).toEqual({x:4, y:4})
    
+    })
+
+    it('#inbounds should check wether a suggested move is within a grids bounds returning true or false',()=>{
+        expect(()=>henry.inbounds('x',1)).toThrow(new Error('out of bounds'))
+    })
+
+    it('#moveMe should only move if the move is within bounds of the grid', ()=>{
+    
     })
 
  
