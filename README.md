@@ -1,10 +1,10 @@
 ## Hnery Hoover Challenge ##
 
-* goals *
+# goals #
 
 Make a program to control a hoover on a rectangular grid. The hoover should take a string of directions, letters of the compass, and return its end location as well as how many dirt patches it had hoovered up.
 
-* what I made *
+*what I made*
 
 I made a program that includes: 
 
@@ -20,7 +20,7 @@ This is a tiny class that operates just as an object. I kept as a class as I fel
 
 This class process the bulk of the program. It will take a location, grid, and directions and then output its location and number of dirtpatches cleaned.
 
-* assumptions *
+*assumptions*
 
 The mins of the grid are 0. 
 
@@ -37,7 +37,7 @@ This program only works through changing or adding rules into index.txt within t
 first line is grid, second is hoover start location, last is dirctions and middle are the dirt patches. 
 
 
-* how to run * 
+*how to run* 
 
 have the latest version of node installed. 
 
@@ -51,7 +51,7 @@ To run the program,
 
 type 'node index.js' - you will see the outcome then the program will exit. 
 
-* changes and what would be a nice way to scale' *
+*changes and what would be a nice way to scale'*
 
 In order for the program to grow there would be a number of changes I would make. 
 
