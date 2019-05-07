@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 function readData(){
-    return fs.readFileSync('../index.txt', 'utf8').split('\n')
+    return fs.readFileSync('./index.txt', 'utf8').split('\n')
 }
 
 function turnToNumbersArray(data){

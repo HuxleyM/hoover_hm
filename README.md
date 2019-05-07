@@ -14,7 +14,7 @@ I built this Handler in a functional style. Originally was going to be as a clos
 
 -a grid class
 
-This is a tiny class that operates just as an object. I kept as a class as I felt over time it would develp
+This is a tiny class that operates just as an object. I kept as a class as I felt over time it would develop
 
 -a hoover class 
 
@@ -33,6 +33,7 @@ The hoover doesnt need to remember what dirt patches it cleaned, just that it cl
 A hoover cannot go out of bounds of the grid.
 
 This program only works through changing or adding rules into index.txt within the root. 
+
 first line is grid, second is hoover start location, last is dirctions and middle are the dirt patches. 
 
 
@@ -46,7 +47,7 @@ navigate into the cloned folder using terminal, run 'npm install'.
 
 to test please run jasmine in the root by typing jasmine in your terminal whilst in the root. 
 
-To run the program, please cd into the src folder. 
+To run the program, 
 
 type 'node index.js' - you will see the outcome then the program will exit. 
 
