@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-function readData(){
+function readDataFromFile(){
     return fs.readFileSync('./index.txt', 'utf8').split('\n')
 }
 
@@ -28,7 +28,7 @@ const DataHandler = (function(){
 
 module.exports = {
     textFileHandler : DataHandler,
-    readDataTest : readData,
+    readDataTest : readDataFromFile,
     turnToNumbersArrayTest : turnToNumbersArray,
     sortDataTest : sortData
 }

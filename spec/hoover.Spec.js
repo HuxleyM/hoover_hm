@@ -6,8 +6,8 @@ describe('hoover class', ()=>{
         dimensions: { x: 4, y: 4 },
         dirtPatches: [ [ 1, 0 ], [ 2, 2 ], [ 2, 3 ] ] 
     }
-
     const dummyLocation = [ 5, 5 ]
+    
     var henry;
 
     beforeEach(()=>{
@@ -19,7 +19,7 @@ describe('hoover class', ()=>{
        expect(henry.floor).toEqual(dummyFloorObj)
     })
     
-    
+    // this is now redundent - ive kept into show my working but would usually remove
     xit('#moveme should take an argument, and should return a integer result dependent on letter',()=>{
         expect(henry.moveMe('N')).toEqual(1)
         expect(henry.moveMe('E')).toEqual(1)
@@ -28,14 +28,14 @@ describe('hoover class', ()=>{
      })
 
  
-     it('#validDirections should check that directions only contain valid Directions', ()=> {
-         expect(()=>henry.validDirections('1')).toThrow(new TypeError('invalid directions'))
-     })
-     
-     it('#validDirections should be able to regonise lower case letters',()=>{
+    it('#validDirections should check that directions only contain valid Directions', ()=> {
+        expect(()=>henry.validDirections('1')).toThrow(new TypeError('invalid directions'))
+    })
+    
+    it('#validDirections should be able to regonise lower case letters',()=>{
         let directions = henry.validDirections('n')
         expect(directions).toEqual(['N'])  
-     })
+    })
 
 
     it('#moveme should be able to take a string of directions that change its x and y location', ()=>{
@@ -62,9 +62,9 @@ describe('hoover class', ()=>{
     })
 
     it('#moveMe should call the hovversUp method', ()=>{
-        spyOn(henry, 'hooversUp')
+        spyOn(henry, 'removeDirt')
         henry.moveMe('SWS')
-        expect(henry.hooversUp).toHaveBeenCalled();
+        expect(henry.removeDirt).toHaveBeenCalled();
      })
  
 
@@ -80,19 +80,19 @@ describe('hoover class', ()=>{
             henry.location = {x:3, y:4}
         })
 
-        xit('#hooversUp will check if a patch of dirt has been hoovered up', ()=>{
-            expect(henry.hooversUp()).toBe(true)
+        xit('#removeDirt will check if a patch of dirt has been hoovered up', ()=>{
+            expect(henry.removeDirt()).toBe(true)
         })
     
         
-        it('#hooversUp if a patch has been found it should add it to the number hoovered ', ()=>{
-            henry.hooversUp()
+        it('#removeDirt if a patch has been found it should add it to the number hoovered ', ()=>{
+            henry.removeDirt()
             expect(henry.dirtPatchesHoovered).toBe(1)
         })
     
-        it('#hooversUp itShould remove the dirt patch from the array', ()=>{
+        it('#removeDirt itShould remove the dirt patch from the array', ()=>{
             expect(henry.floor.dirtPatches.length).toBe(4)
-            henry.hooversUp()
+            henry.removeDirt()
             expect(henry.floor.dirtPatches.length).toBe(3)
         })
     })

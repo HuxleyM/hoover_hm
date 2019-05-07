@@ -9,10 +9,3 @@ const program = (function(){
     Henry.moveMe(cleanedData.directions)
     console.log(Henry.givesLocation)
 })();
-
-// before submission 
-
-// review a style guide
-// ensure naming conventions are clear
-// clea tests
-//

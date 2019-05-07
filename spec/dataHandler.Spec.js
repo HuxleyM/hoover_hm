@@ -1,10 +1,7 @@
 const rewire = require('rewire')
 const dataHandlerFunctions = rewire('../src/dataHandler')
 
-/**
- * 
- * Setting up rewire to allow me to stub fs module
- */
+// Setting up rewire to allow me to stub fs module 
 const fileDataDummy = '5 5\n1 2\n1 0\n2 2\n2 3\nNNESEESWNWW'
 
 var fsMock = {
@@ -14,7 +11,6 @@ var fsMock = {
 };
 dataHandlerFunctions.__set__("fs", fsMock);
 
-// retriving functions for testing
 
 const {sortDataTest, readDataTest, turnToNumbersArrayTest, textFileHandler} = dataHandlerFunctions
 
