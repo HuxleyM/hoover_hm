@@ -22,7 +22,7 @@ function sortData(data){
 
 const DataHandler = (function(){
     return {
-        getData : () => sortData(readData())
+        getData : () => sortData(readDataFromFile())
     }
 })();
 

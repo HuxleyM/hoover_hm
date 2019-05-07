@@ -59,4 +59,9 @@ To enable multiple hoovers on the same grid, I would create different grids as s
 
 I built the moveMe method of hoover to enable it to take arguments, meaning that if the interface of the program was tweaked users would be able to control the hoovers multiple times. 
 
-I'd work on removing the dependency upon the grid class by moving methods such as inbound and hooversup onto the grid class and then passing this grid class along with directions into the move me method. I'd be intrested to talk about wether I should have done this with this code or wether it wasnt necessary till later :)
+I'd work on removing the dependency upon the grid class by moving methods such as inbound and removeDirt onto the grid class and then passing this grid class along with directions into the move me method. I'd be intrested to talk about wether I should have done this with this code or wether it wasnt necessary till later :)
+
+
+thanks 
+
+huxley
